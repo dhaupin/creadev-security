@@ -1,0 +1,34 @@
+{
+  "name": "@creadev.org/security",
+  "version": "0.3.1",
+  "type": "module",
+  "description": "Shared security utilities - rate limiting, input sanitization, WAF, validation",
+  "keywords": [
+    "security",
+    "rate-limit",
+    "waf",
+    "sanitization",
+    "validation"
+  ],
+  "author": "dhaupin",
+  "repository": "https://github.com/dhaupin/creadev-security",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./rate-limit": "./src/rate-limit.ts",
+    "./sanitize": "./src/sanitize.ts",
+    "./validation": "./src/validation.ts",
+    "./firewall": "./src/firewall.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^1.6.1"
+  }
+}
