@@ -21,10 +21,14 @@ jobs:
       - name: Check NPM_TOKEN
         run: |
           if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
-            echo "::error::NPM_TOKEN secret is not set. Add it at https://github.com/${{ github.repository }}/settings/secrets/new"
+            echo "::error::NPM_TOKEN secret is not set"
             exit 1
           fi
-        shell: bash
+          # Validate token works
+          if ! npm whoami --registry=https://registry.npmjs.org/ --authToken=${{ secrets.NPM_TOKEN }} >/dev/null 2>&1; then
+            echo "::error::NPM_TOKEN is invalid or expired. Generate a new one at https://www.npmjs.com/settings/-/access-tokens"
+            exit 1
+          fi
 
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
