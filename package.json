@@ -1,6 +1,6 @@
 {
   "name": "@creadev.org/security",
-  "version": "0.3.2",
+  "version": "0.3.1",
   "type": "module",
   "description": "Shared security utilities - rate limiting, input sanitization, WAF, validation",
   "keywords": ["security", "rate-limit", "waf", "sanitization", "validation"],
