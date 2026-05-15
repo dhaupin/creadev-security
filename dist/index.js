@@ -27,3 +27,5 @@ export { sanitizePath, sanitizeRepoName, sanitizeQueryParam, sanitizeInput, crea
 export { validateUUID, validateUUIDs, validateBranchName, safeBranchName, validateFilePath, validateFilePaths, validateSHA, validateShortSHA, validateRepoFullName, parseRepoFullName, validateCommitMessage, } from './validation';
 // Full firewall exports
 export { createFirewall, firewall, secureValidators, securityConfig, sanitizeText, sanitizeHtml, sanitizeUrl, sanitizeFilename, sanitizeJson, sanitize, isAreaActive, SECURITY_ACTIVE_AREAS, } from './firewall';
+// NEW: CORS headers builder
+export { buildCorsHeaders } from './cors';

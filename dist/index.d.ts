@@ -29,3 +29,5 @@ export type { ValidationResult, WafOptions } from './sanitize';
 export { validateUUID, validateUUIDs, validateBranchName, safeBranchName, validateFilePath, validateFilePaths, validateSHA, validateShortSHA, validateRepoFullName, parseRepoFullName, validateCommitMessage, } from './validation';
 export { createFirewall, firewall, secureValidators, securityConfig, sanitizeText, sanitizeHtml, sanitizeUrl, sanitizeFilename, sanitizeJson, sanitize, isAreaActive, SECURITY_ACTIVE_AREAS, } from './firewall';
 export type { FirewallConfig, FirewallInstance, FirewallResult, Threat, ThreatLevel, ThreatCategory, CustomPattern, InputType, } from './firewall';
+export { buildCorsHeaders } from './cors';
+export type { CorsOptions } from './cors';

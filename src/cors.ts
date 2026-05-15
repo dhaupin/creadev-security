@@ -26,7 +26,7 @@ export interface CorsOptions {
   /** Additional headers to allow */
   allowHeaders?: string;
   /** Methods to allow */
-  allowMethods?: string[];
+  allowMethods?: string | string[];
 }
 
 /** Default headers */
@@ -63,6 +63,15 @@ function getOrigin(source: Request | Headers | Record<string, string> | undefine
 }
 
 /**
+ * Convert allowMethods to string
+ */
+function methodsToString(methods: string | string[] | undefined): string {
+  if (!methods) return DEFAULT_ALLOW_METHODS;
+  if (Array.isArray(methods)) return methods.join(', ');
+  return methods;
+}
+
+/**
  * Build CORS headers
  * 
  * @param source - Request (Web), Headers (Deno), or plain object (Node)
@@ -72,14 +81,15 @@ export function buildCorsHeaders(
   source: Request | Headers | Record<string, string>,
   options: CorsOptions = {}
 ): Record<string, string> {
-  const { allowedOrigins, allowHeaders, allowMethods } = options;
+  const { allowedOrigins, allowHeaders } = options;
+  const allowMethods = methodsToString(options.allowMethods);
   
   const origin = getOrigin(source);
   
   const defaultHeaders: Record<string, string> = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': allowHeaders ?? DEFAULT_ALLOW_HEADERS,
-    'Access-Control-Allow-Methods': allowMethods ?? DEFAULT_ALLOW_METHODS,
+    'Access-Control-Allow-Methods': allowMethods,
   };
   
   // No allowed origins set - return wide open (backwards compatible)
