@@ -35,6 +35,9 @@ jobs:
           fi
           echo "Publishing as: $USER"
 
+      - name: Clear node cache
+        run: rm -rf node_modules .npm
+
       - run: npm ci
 
       - run: npm publish --access public --retry 3
