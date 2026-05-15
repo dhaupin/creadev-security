@@ -22,4 +22,4 @@ jobs:
 
       - run: npm ci
 
-      - run: npm publish --access public
+      - run: npm publish --access public --retry 3
