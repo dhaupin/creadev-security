@@ -18,17 +18,18 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Check NPM_TOKEN
+      - name: Validate NPM_TOKEN
         run: |
           if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
             echo "::error::NPM_TOKEN secret is not set"
             exit 1
           fi
-          # Validate token works
-          if ! npm whoami --registry=https://registry.npmjs.org/ --authToken=${{ secrets.NPM_TOKEN }} >/dev/null 2>&1; then
-            echo "::error::NPM_TOKEN is invalid or expired. Generate a new one at https://www.npmjs.com/settings/-/access-tokens"
+          USER=$(npm whoami --registry=https://registry.npmjs.org/ --authToken=${{ secrets.NPM_TOKEN }} 2>&1)
+          if [ $? -ne 0 ] || [ -z "$USER" ]; then
+            echo "::error::NPM_TOKEN is invalid. Generate new at https://www.npmjs.com/settings/-/access-tokens"
             exit 1
           fi
+          echo "Verified as: $USER"
 
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
