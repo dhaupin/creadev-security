@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Check NPM_TOKEN
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "::error::NPM_TOKEN secret is not set. Add it at https://github.com/${{ github.repository }}/settings/secrets/new"
+            exit 1
+          fi
+        shell: bash
+
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
       - run: npm ci
