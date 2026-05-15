@@ -77,3 +77,8 @@ export type {
   CustomPattern,
   InputType,
 } from './firewall';// v0.3.1 sync
+
+
+// NEW: CORS headers builder
+export { buildCorsHeaders } from './cors';
+export type { CorsOptions } from './cors';
