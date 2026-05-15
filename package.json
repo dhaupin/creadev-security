@@ -3,30 +3,41 @@
   "version": "0.3.1",
   "type": "module",
   "description": "Shared security utilities - rate limiting, input sanitization, WAF, validation",
-  "keywords": [
-    "security",
-    "rate-limit",
-    "waf",
-    "sanitization",
-    "validation"
-  ],
+  "keywords": ["security", "rate-limit", "waf", "sanitization", "validation"],
   "author": "dhaupin",
   "repository": "https://github.com/dhaupin/creadev-security",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": { "access": "public" },
   "exports": {
-    ".": "./src/index.ts",
-    "./rate-limit": "./src/rate-limit.ts",
-    "./sanitize": "./src/sanitize.ts",
-    "./validation": "./src/validation.ts",
-    "./firewall": "./src/firewall.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./rate-limit": {
+      "types": "./dist/rate-limit.d.ts",
+      "import": "./dist/rate-limit.js"
+    },
+    "./sanitize": {
+      "types": "./dist/sanitize.d.ts",
+      "import": "./dist/sanitize.js"
+    },
+    "./validation": {
+      "types": "./dist/validation.d.ts",
+      "import": "./dist/validation.js"
+    },
+    "./firewall": {
+      "types": "./dist/firewall.d.ts",
+      "import": "./dist/firewall.js"
+    },
+    "./cors": {
+      "types": "./dist/cors.d.ts",
+      "import": "./dist/cors.js"
+    }
   },
-  "scripts": {
-    "build": "tsc",
-    "test": "vitest"
-  },
+  "scripts": { "build": "tsc", "test": "vitest" },
   "devDependencies": {
     "typescript": "^5.0.0",
     "vitest": "^1.6.1"
